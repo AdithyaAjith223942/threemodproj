@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Thank You</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Thank You!</h1>
+        <p>Your order has been placed successfully.</p>
+        {% if order %}
+            <p>Order ID: {{ order.id }}</p>
+            <p>Total: {{ order.total }}</p>
+            <p>Order Details:</p>
+            <ul>
+                {% for item in order.orderitem_set.all %}
+                    <li>{{ item.product.name }} x {{ item.quantity }} = {{ item.price * item.quantity }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
